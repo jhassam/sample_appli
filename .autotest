@@ -1,0 +1,22 @@
+#!/bin/ruby
+#require 'redgreen/autotest'
+#require 'autotest/timestamp'
+#require "autotest/restart"
+
+#Only Ubuntu
+require 'autotest-growl'
+#require "test_notifier/autotest"
+
+require 'autotest-fsevent'
+
+
+#Only OSX
+#require "autotest/growl"
+#require 'autotest/fsevent'
+
+# All machines
+Autotest.add_hook :initialize do |autotest|
+  %w{.git .svn .hg .DS_Store ._* vendor tmp log doc}.each do |exception|
+    autotest.add_exception(exception)
+  end
+end
